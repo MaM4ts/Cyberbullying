@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conscientização e Prevenção ao Cyberbullying</title>
+  <style>
+    /* VARIÁVEIS DE TEMA E ACESSIBILIDADE */
+    :root {
+      --bg-primary: #f8f9fa;
+      --bg-card: #ffffff;
+      --text-color: #212529;
+      --primary-color: #0056b3;
+      --accent-color: #d9534f;
+      --border-color: #dee2e6;
+      --font-size-base: 1rem;
+      --focus-outline: 3px solid #ffbf47;
+    }
+
+    /* MODO ALTO CONTRASTE */
+    body.high-contrast {
+      --bg-primary: #000000;
+      --bg-card: #121212;
+      --text-color: #ffff00;
+      --primary-color: #00ffff;
+      --accent-color: #ff0055;
+      --border-color: #ffffff;
+      --focus-outline: 3px solid #ffffff;
+    }
+
+    /* ESTILOS GERAIS */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: var(--font-size-base);
+      line-height: 1.6;
+      background-color: var(--bg-primary);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* BARRA DE ACESSIBILIDADE FIXA */
+    .accessibility-bar {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .accessibility-bar span {
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .btn-acc {
+      background: #333;
+      color: #fff;
+      border: 1px solid #666;
+      padding: 6px 12px;
+      margin-left: 4px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .btn-acc:hover, .btn-acc:focus {
+      outline: var(--focus-outline);
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    /* HEADER */
+    header {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    body.high-contrast header {
+      background-color: #111;
+      color: var(--text-color);
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    /* LAYOUT PRINCIPAL */
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.6rem; color: var(--primary-color); margin-bottom: 1rem; }
+    body.high-contrast h2 { color: var(--text-color); }
+    h3 { font-size: 1.2rem; margin: 1rem 0 0.5rem 0; }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li { margin-bottom: 0.5rem; }
+
+    /* MÍDIA RESPONSIVA */
+    .media-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .media-card {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 1rem;
+      background-color: var(--bg-card);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* CARDS DE CANAIS DE AJUDA */
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .help-card {
+      background-color: var(--bg-primary);
+      border-left: 5px solid var(--accent-color);
+      padding: 1rem;
+      border-radius: 4px;
+    }
+
+    a {
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    body.high-contrast a {
+      color: #00ffff;
+    }
+
+    a:focus, button:focus, iframe:focus {
+      outline: var(--focus-outline);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE ACESSIBILIDADE WCAG -->
+  <aside class="accessibility-bar" aria-label="Ferramentas de Acessibilidade">
+    <span>Acessibilidade</span>
+    <div>
+      <button class="btn-acc" onclick="alterarFonte(1)" aria-label="Aumentar tamanho do texto">A+</button>
+      <button class="btn-acc" onclick="alterarFonte(-1)" aria-label="Diminuir tamanho do texto">A-</button>
+      <button class="btn-acc" onclick="resetarFonte()" aria-label="Restaurar tamanho do texto padrão">A</button>
+      <button class="btn-acc" onclick="toggleAltoContraste()" aria-label="Alternar modo de alto contraste">Alto Contraste</button>
+    </div>
+  </aside>
+
+  <!-- CABEÇALHO -->
+  <header role="banner">
+    <h1>Combate ao Cyberbullying no Ambiente Escolar</h1>
+    <p>Projeto de Conscientização, Prevenção e Apoio Digital</p>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container" id="main-content" tabindex="-1">
+
+    <!-- CONCEITO -->
+    <section aria-labelledby="sec-conceito">
+      <h2 id="sec-conceito">1. O que é Cyberbullying?</h2>
+      <p>
+        O <strong>cyberbullying</strong> consiste no uso de tecnologias de informação e comunicação (redes sociais, aplicativos de mensagens, jogos online) para intimidar, perseguir, humilhar ou maltratar um indivíduo ou grupo de forma intencional e repetida.
+      </p>
+      <p>
+        Ao contrário do bullying presencial, o cyberbullying ultrapassa os muros da escola e acompanha a vítima em tempo integral, com rápida capacidade de disseminação.
+      </p>
+    </section>
+
+    <!-- LEIS -->
+    <section aria-labelledby="sec-leis">
+      <h2 id="sec-leis">2. Legislação Aplicável</h2>
+      <ul>
+        <li><strong>Lei nº 13.185/2015:</strong> Institui o Programa de Combate à Intimidação Sistemática em instituições de ensino em todo o Brasil.</li>
+        <li><strong>Lei nº 14.811/2024:</strong> Incluiu o Cyberbullying no Código Penal (Art. 146-A), estabelecendo pena de reclusão de 2 a 4 anos para crimes cometidos em ambientes virtuais.</li>
+        <li><strong>Estatuto da Criança e do Adolescente (ECA):</strong> Assegura a proteção à dignidade, integridade e convivência comunitária segura.</li>
+      </ul>
+    </section>
+
+    <!-- CAUSAS -->
+    <section aria-labelledby="sec-causas">
+      <h2 id="sec-causas">3. Principais Causas</h2>
+      <ul>
+        <li><strong>Sensação de Anonimato:</strong> A falsa ilusão de que o ambiente digital é isento de identificação e regras.</li>
+        <li><strong>Distanciamento Emocional:</strong> A ausência de contato visual direto reduz o sentimento imediato de empatia.</li>
+        <li><strong>Pressão de Grupo e Busca por Status:</strong> Desejo de obter validação ou engajamento em redes sociais.</li>
+        <li><strong>Falta de Educação Digital:</strong> Desconhecimento sobre netiqueta e pegada digital.</li>
+      </ul>
+    </section>
+
+    <!-- CONTEXTO ESCOLAR (1500 ALUNOS) -->
+    <section aria-labelledby="sec-contexto">
+      <h2 id="sec-contexto">4. Plano de Ação: Colégio com 1.500 Alunos</h2>
+      <p>Para uma comunidade escolar de grande porte, a abordagem deve ser estruturada da seguinte forma:</p>
+      <ol>
+        <li><strong>Canal de Ouvidoria Escolar Anônimo:</strong> Formulário digital acessível para alunos reportarem casos com segurança.</li>
+        <li><strong>Comitê de Ética e Mediação:</strong> Equipe multidisciplinar composta por psicopedagogos, professores e representantes de turma.</li>
+        <li><strong>Palestras por Ciclo de Ensino:</strong> Conteúdo adaptado para o Ensino Fundamental I, II e Ensino Médio nos dois turnos.</li>
+        <li><strong>Guia de Convivência Digital:</strong> Código de conduta aceito por alunos e responsáveis no ato da matrícula.</li>
+      </ol>
+    </section>
+
+    <!-- RECURSOS MULTIMÍDIA (IMAGENS E VÍDEO INTEGRADO) -->
+    <section aria-labelledby="sec-multimidia">
+      <h2 id="sec-multimidia">5. Recursos Visuais e Audiovisuais</h2>
+      <div class="media-container">
+        
+        <!-- Cartaz Educativo -->
+        <article class="media-card">
+          <h3>Cartaz de Conscientização</h3>
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxCLOUBPJvuMJP4ftwd_yG3cl4SvABqmu-ZuQbjnUcFEU1IxhrESl7yHbC5tes-OJ6yMlNmpKVHfwVrjRUs1kVHmpMwVghmM94hyphenhyphen8SwslKGz9RcOhLds1F_L5rB-DqCIspWg6G1igpMys/s1600/nethics_0010_cartaz-bullying.jpg" 
+               alt="Infográfico educativo com instruções de combate ao bullying nos meios digitais, destacando orientações para vítimas e testemunhas." />
+          <p><small>Orientação para alunos, vítimas e testemunhas digitais.</small></p>
+        </article>
+
+        <!-- Vídeo Educativo Integrado do YouTube -->
+        <article class="media-card">
+          <h3>Vídeo Educativo Explicativo</h3>
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/M8I-SvrdV0g" 
+              title="Cyberbullying - Como evitar o assédio virtual?" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          <p><small>Vídeo do canal <em>Smile and Learn - Português</em> demonstrando como atitudes conscientes evitam o assédio virtual.</small></p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CANAIS DE AJUDA -->
+    <section aria-labelledby="sec-ajuda">
+      <h2 id="sec-ajuda">6. Canais Externos de Ajuda e Denúncia</h2>
+      <div class="help-grid">
+        <div class="help-card">
+          <h3>SaferNet Brasil</h3>
+          <p>Orientação e denúncias sobre crimes cibernéticos e cyberbullying.</p>
+          <p><a href="https://www.safernet.org.br" target="_blank" rel="noopener noreferrer" aria-label="Acessar site da SaferNet Brasil em nova aba">safernet.org.br</a></p>
+        </div>
+        <div class="help-card">
+          <h3>Disque 100</h3>
+          <p>Disque Direitos Humanos. Gratuito, confidencial e disponível 24h.</p>
+          <p><strong>Ligue: 100</strong></p>
+        </div>
+        <div class="help-card">
+          <h3>CVV (Apoio Emocional)</h3>
+          <p>Atendimento gratuito para apoio emocional e prevenção do suicídio.</p>
+          <p><a href="https://www.cvv.org.br" target="_blank" rel="noopener noreferrer" aria-label="Acessar site do CVV em nova aba">cvv.org.br</a> | <strong>Ligue: 188</strong></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer role="contentinfo">
+    <p>Projeto Educativo de Prevenção ao Cyberbullying &copy; Colégio Comunitário</p>
+    <p><small>Desenvolvido de acordo com as diretrizes de acessibilidade WCAG 2.1.</small></p>
+  </footer>
+
+  <!-- JAVASCRIPT PARA ACESSIBILIDADE -->
+  <script>
+    let fontScale = 100;
+
+    function alterarFonte(delta) {
+      fontScale += delta * 10;
+      if (fontScale < 80) fontScale = 80;
+      if (fontScale > 150) fontScale = 150;
+      document.documentElement.style.fontSize = fontScale + '%';
+    }
+
+    function resetarFonte() {
+      fontScale = 100;
+      document.documentElement.style.fontSize = '100%';
+    }
+
+    function toggleAltoContraste() {
+      document.body.classList.toggle('high-contrast');
+      const isHighContrast = document.body.classList.contains('high-contrast');
+      localStorage.setItem('highContrast', isHighContrast);
+    }
+
+    window.onload = function() {
+      if (localStorage.getItem('highContrast') === 'true') {
+        document.body.classList.add('high-contrast');
+      }
+    };
+  </script>
+</body>
+</html>
